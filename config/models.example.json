@@ -1,0 +1,26 @@
+{
+  "_说明": "复制成 config/models.json 再填。只要是 OpenAI 兼容接口（/chat/completions）都能用。key 只写环境变量名，值放在环境变量里，永远不进仓库。",
+  "providers": {
+    "provider_a": {"base": "https://api.example-a.com/v1", "key_env": "PROVIDER_A_API_KEY"},
+    "provider_b": {"base": "https://api.example-b.com/v1", "key_env": "PROVIDER_B_API_KEY"},
+    "provider_c": {"base": "https://api.example-c.com/v1", "key_env": "PROVIDER_C_API_KEY"}
+  },
+  "roles": {
+    "quick":    {"provider": "provider_a", "model": "fast-model",   "temperature": 0.3, "max_tokens": 600},
+    "content":  {"provider": "provider_a", "model": "fast-model",   "temperature": 0.5, "max_tokens": 1500},
+    "craft":    {"provider": "provider_b", "model": "medium-model", "temperature": 0.5, "max_tokens": 1500},
+    "process":  {"provider": "provider_b", "model": "medium-model", "temperature": 0.5, "max_tokens": 1500},
+    "arbiter":  {"provider": "provider_c", "model": "strong-model", "temperature": 0.0, "max_tokens": 1200},
+    "feedback": {"provider": "provider_a", "model": "fast-model",   "temperature": 0.7, "max_tokens": 1500}
+  },
+  "pools": {
+    "_说明": "每个评委角色一个候选池，轮转派活；每一项必须是 provider + model 成对。",
+    "content": [{"provider": "provider_a", "model": "fast-model"}, {"provider": "provider_b", "model": "medium-model"}],
+    "craft":   [{"provider": "provider_b", "model": "medium-model"}, {"provider": "provider_a", "model": "fast-model"}],
+    "process": [{"provider": "provider_b", "model": "medium-model"}, {"provider": "provider_c", "model": "strong-model"}]
+  },
+  "fallback": [
+    {"provider": "provider_a", "model": "fast-model"},
+    {"provider": "provider_b", "model": "medium-model"}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "_说明": "评分规则的示例。真实比赛用 config/rules.private.json（已写进 .gitignore，不进仓库）。下面的维度名和满分在比赛战报里公开过；档位分数线、评分阶梯、内部细则都是示例值，不是比赛实际用的。",
+  "dims": {
+    "real":        {"name": "真实感",     "full": 20, "judge": "content"},
+    "anti_cliche": {"name": "反套路",     "full": 20, "judge": "content"},
+    "voice":       {"name": "语言辨识度", "full": 15, "judge": "craft"},
+    "structure":   {"name": "结构完成度", "full": 15, "judge": "craft"},
+    "process":     {"name": "人的驱动",   "full": 30, "judge": "process"}
+  },
+  "tiers": [[90, "定稿"], [75, "成篇"], [60, "有骨"], [45, "起稿"], [25, "毛坯"], [0, "白纸"]],
+  "arbitrate_gap": 4,
+  "internal": {
+    "_说明": "内规：只会被拼进评委的 system prompt，永远不出现在给学生看的任何地方。",
+    "rules": ["示例内部细则 A", "示例内部细则 B"],
+    "notes": "这里写你不想公开的评分细则。"
+  }
+}

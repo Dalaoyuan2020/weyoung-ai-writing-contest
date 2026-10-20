@@ -1,0 +1,12 @@
+# 真实配置和内规 —— 永远不进仓库
+config/models.json
+config/rules.private.json
+.env
+*.local
+
+# 运行时数据（稿件、成绩、用量账本）
+data/
+
+__pycache__/
+*.pyc
+.DS_Store
